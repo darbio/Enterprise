@@ -8,9 +8,8 @@ namespace Console
 {
     using Bootstrapper;
 
+    using Core.Models;
     using Core.Services;
-
-    using Domain.Models;
 
     class Program
     {
@@ -23,12 +22,11 @@ namespace Console
             var personService = Bootstrapper.Resolve<IPersonService>();
             
             // Create our person
-            var person = new Person()
-            {
-                FirstName = "James",
-                LastName = "Darbyshire",
-                DateOfBirth = new DateTime(1966, 1, 31)
-            };
+            var person = Bootstrapper.Resolve<IPerson>();
+
+            person.FirstName = "James";
+            person.LastName = "Darbyshire";
+            person.DateOfBirth = new DateTime(1966, 1, 31);
 
             // Save our person
             personService.Save(person);

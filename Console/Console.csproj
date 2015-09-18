@@ -56,18 +56,6 @@
       <Project>{334d7695-cc54-408c-8667-5b1cfb10bd22}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{6f1a87d9-6347-4cf7-a103-322b8ac61225}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{499fd1c2-920c-438c-b42f-4cd7b1469627}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{a2441d1a-93f4-4f13-ab95-d76919497d4f}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

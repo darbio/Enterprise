@@ -7,8 +7,8 @@
     <ProjectGuid>{C75E2F50-5FE8-4B7C-A330-F2F9EDF25CAE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Application</RootNamespace>
-    <AssemblyName>Application</AssemblyName>
+    <RootNamespace>Bootstrapper</RootNamespace>
+    <AssemblyName>Bootstrapper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
