@@ -12,38 +12,11 @@ namespace Data.Repositories
     using Core.Entities;
     using Core.Repositories;
 
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : BaseRepository<IPersonEntity, PersonEntity>, IPersonRepository
     {
-        private MongoRepository<PersonEntity> _mongoRepository = new MongoRepository<PersonEntity>("mongodb://localhost/test", "Persons");
-
-        public IPersonEntity Create(IPersonEntity entity)
-        {
-            return _mongoRepository.Add(Mapper.Map<PersonEntity>(entity));
-        }
-
-        public IPersonEntity GetById(string id)
-        {
-            return _mongoRepository.GetById(id);
-        }
-
-        public IPersonEntity Update(IPersonEntity entity)
-        {
-            return _mongoRepository.Update(Mapper.Map<PersonEntity>(entity));
-        }
-
-        public void Delete(string id)
-        {
-            _mongoRepository.Delete(id);
-        }
-
-        public IQueryable<IPersonEntity> GetList()
-        {
-            return _mongoRepository.AsQueryable();
-        }
-
         public IEnumerable<IPersonEntity> GetByLastName(string lastname)
         {
-            return _mongoRepository.Where(a => a.LastName == lastname);
+            return MongoRepository.Where(a => a.LastName == lastname);
         }
     }
 }
