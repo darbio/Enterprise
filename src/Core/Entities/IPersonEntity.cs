@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public interface IPersonEntity
+    public interface IPersonEntity : IEntity
     {
-        string Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         DateTime DateOfBirth { get; set; }

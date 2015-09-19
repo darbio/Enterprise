@@ -2,12 +2,9 @@
 {
     using System.Collections.Generic;
 
-    using Core.Entities;
+    using Entities;
 
-    public interface IPersonRepository
+    public interface IPersonRepository : IRepository<IPersonEntity>
     {
-        IPersonEntity Save(IPersonEntity entity);
-
-        IEnumerable<IPersonEntity> GetList();
     }
 }

@@ -9,19 +9,8 @@ namespace Data.Repositories
     using Core.Entities;
     using Core.Repositories;
 
-    using Data.Entities;
-
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : MongoRepository<IPersonEntity>, IPersonRepository
     {
-        public IPersonEntity Save(IPersonEntity entity)
-        {
-            var mapped = Mapper.Map<PersonEntity>(entity);
-            return mapped;
-        }
-
-        public IEnumerable<IPersonEntity> GetList()
-        {
-            return new List<PersonEntity>();
-        }
+        public PersonRepository() : base("Persons") { }
     }
 }

@@ -8,14 +8,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Data.Entities
 {
-    using Core.Entities;
-
-    public class PersonEntity : Entity, IPersonEntity
+    [BsonIgnoreExtraElements(Inherited = true)]
+    public abstract class Entity
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public DateTime DateOfBirth { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
     }
 }

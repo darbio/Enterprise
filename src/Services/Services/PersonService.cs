@@ -17,14 +17,14 @@ namespace Services.Services
 
         public PersonService(IPersonRepository personRepository)
         {
-            this._personRepository = personRepository;
+            _personRepository = personRepository;
         }
 
         public IPerson Save(IPerson person)
         {
             // Map IPerson to IPersonEntity
             // Send to our repository
-            var entity = _personRepository.Save(Mapper.Map<IPersonEntity>(person));
+            var entity = _personRepository.Create(Mapper.Map<IPersonEntity>(person));
 
             // Map IPersonEntity to IPerson
             person = Mapper.Map<IPerson>(entity);
