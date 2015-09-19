@@ -11,5 +11,7 @@ namespace Core.Models
         string FirstName { get; set; }
         string LastName { get; set; }
         DateTime DateOfBirth { get; set; }
+
+        int Age { get; }
     }
 }

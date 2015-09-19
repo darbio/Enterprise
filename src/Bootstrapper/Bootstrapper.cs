@@ -20,8 +20,7 @@ namespace Bootstrapper
     using Data.Repositories;
 
     using Domain.Models;
-
-    using Services.Services;
+    using Domain.Services;
 
     public static class Bootstrapper
     {

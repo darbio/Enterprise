@@ -61,10 +61,6 @@
       <Project>{499fd1c2-920c-438c-b42f-4cd7b1469627}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{a2441d1a-93f4-4f13-ab95-d76919497d4f}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

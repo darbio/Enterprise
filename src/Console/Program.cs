@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Core.Factories;
 
 namespace Console
@@ -32,7 +33,9 @@ namespace Console
             person = personService.Save(person);
 
             // Retrieve our person
-            var peopleCalledDarbyshire = personService.GetByLastName(person.LastName);
+            var firstPersonCalledDarbyshire = personService.GetByLastName(person.LastName).First();
+
+            System.Console.WriteLine("Returned {0} {1}, who is {2} years old!", firstPersonCalledDarbyshire.FirstName, firstPersonCalledDarbyshire.LastName, firstPersonCalledDarbyshire.Age);
 
             System.Console.ReadKey();
         }
