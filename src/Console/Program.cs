@@ -4,7 +4,7 @@ using Core.Factories;
 namespace Console
 {
     using Bootstrapper;
-    
+
     using Core.Services;
 
     class Program
@@ -16,7 +16,7 @@ namespace Console
 
             // Locate our person service
             var personService = Bootstrapper.Locate<IPersonService>();
-            
+
             // Locate our person factory
             var personFactory = Bootstrapper.Locate<IPersonFactory>();
 
@@ -33,11 +33,6 @@ namespace Console
 
             // Retrieve our person
             var peopleCalledDarbyshire = personService.GetByLastName(person.LastName);
-
-            foreach (var darbyshire in peopleCalledDarbyshire)
-            {
-                System.Console.WriteLine("{0} {1}", darbyshire.FirstName, darbyshire.LastName);
-            }
 
             System.Console.ReadKey();
         }

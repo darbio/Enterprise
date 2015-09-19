@@ -64,7 +64,8 @@ namespace Bootstrapper
 
             // Repositories
             // Register as instances so that each one is re-used
-            builder.RegisterInstance(new PersonRepository()).As<IPersonRepository>();
+            var connectionString = "mongodb://localhost/test"; // TODO move this elsehere
+            builder.RegisterInstance(new PersonRepository(connectionString)).As<IPersonRepository>();
 
             // Services
             builder.RegisterType<PersonService>().As<IPersonService>();

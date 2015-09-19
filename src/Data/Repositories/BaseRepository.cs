@@ -1,43 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Entities;
-using Core.Repositories;
+﻿using System.Linq;
 using MongoRepository;
 
 namespace Data.Repositories
 {
-    public class BaseRepository<TInterface, TEntity> : Core.Repositories.IRepository<TInterface>
-        where TInterface : Core.Entities.IEntity
-        where TEntity : Entity
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TInterfaceEntity">The interface which we are to return</typeparam>
+    /// <typeparam name="TEntityImplementation">The concrete implementation of the interface to persist</typeparam>
+    public abstract class BaseRepository<TInterfaceEntity, TEntityImplementation> : Core.Repositories.IRepository<TInterfaceEntity>
+        where TInterfaceEntity : Core.Entities.IEntity
+        where TEntityImplementation : Entity
     {
-        internal MongoRepository<TEntity> MongoRepository = new MongoRepository<TEntity>("mongodb://localhost/test", "Persons");
+        internal MongoRepository<TEntityImplementation> Repository;
 
-        public TInterface Create(TInterface entity)
+        protected BaseRepository(string connectionString, string collectionName)
         {
-            return Mapper.Map<TInterface>(MongoRepository.Add(Mapper.Map<TEntity>(entity)));
+            Repository = new MongoRepository<TEntityImplementation>(connectionString, collectionName);
+        } 
+
+        public TInterfaceEntity Create(TInterfaceEntity entity)
+        {
+            return Mapper.Map<TInterfaceEntity>(Repository.Add(Mapper.Map<TEntityImplementation>(entity)));
         }
 
-        public TInterface GetById(string id)
+        public TInterfaceEntity GetById(string id)
         {
-            return Mapper.Map<TInterface>(MongoRepository.GetById(id));
+            return Mapper.Map<TInterfaceEntity>(Repository.GetById(id));
         }
 
-        public TInterface Update(TInterface entity)
+        public TInterfaceEntity Update(TInterfaceEntity entity)
         {
-            return Mapper.Map<TInterface>(MongoRepository.Update(Mapper.Map<TEntity>(entity)));
+            return Mapper.Map<TInterfaceEntity>(Repository.Update(Mapper.Map<TEntityImplementation>(entity)));
         }
 
         public void Delete(string id)
         {
-            MongoRepository.Delete(id);
+            Repository.Delete(id);
         }
 
-        public IQueryable<TInterface> GetList()
+        public IQueryable<TInterfaceEntity> GetList()
         {
-            return Mapper.Map<IQueryable<TInterface>>(MongoRepository.AsQueryable());
+            return Mapper.Map<IQueryable<TInterfaceEntity>>(Repository.AsQueryable());
         }
     }
 }

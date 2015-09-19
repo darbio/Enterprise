@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Data.Entities;
-using MongoDB.Driver;
-using MongoRepository;
 
 namespace Data.Repositories
 {
@@ -14,9 +9,11 @@ namespace Data.Repositories
 
     public class PersonRepository : BaseRepository<IPersonEntity, PersonEntity>, IPersonRepository
     {
+        public PersonRepository(string connectionString) : base(connectionString, "People") { }
+
         public IEnumerable<IPersonEntity> GetByLastName(string lastname)
         {
-            return MongoRepository.Where(a => a.LastName == lastname);
+            return Repository.Where(a => a.LastName == lastname);
         }
     }
 }
