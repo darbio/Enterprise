@@ -11,6 +11,7 @@ namespace Data.Entities
 {
     using Core.Entities;
 
+    // TODO: Remove the dependency on Entity. This is causing a leakage of MongoRepository up to higher dependencies
     public class PersonEntity : Entity, IPersonEntity
     {
         public string FirstName { get; set; }
