@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Factories;
 
 namespace Console
 {
     using Bootstrapper;
-
-    using Core.Models;
+    
     using Core.Services;
 
     class Program
@@ -18,18 +14,22 @@ namespace Console
             // Initialize
             Bootstrapper.Init();
 
-            // Resolve our Person Service
-            var personService = Bootstrapper.Resolve<IPersonService>();
+            // Locate our person service
+            var personService = Bootstrapper.Locate<IPersonService>();
             
-            // Create our person
-            var person = Bootstrapper.Resolve<IPerson>();
+            // Locate our person factory
+            var personFactory = Bootstrapper.Locate<IPersonFactory>();
 
-            person.FirstName = "James";
-            person.LastName = "Darbyshire";
-            person.DateOfBirth = new DateTime(1966, 1, 31);
+            // Create our person
+            var person = personFactory.FactoryMethod(p =>
+            {
+                p.FirstName = "James";
+                p.LastName = "Darbyshire";
+                p.DateOfBirth = new DateTime(1966, 1, 31);
+            });
 
             // Save our person
-            personService.Save(person);
+            person = personService.Save(person);
         }
     }
 }

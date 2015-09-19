@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Factories;
+using Domain.Factories;
 
 namespace Bootstrapper
 {
@@ -22,7 +24,7 @@ namespace Bootstrapper
 
     public static class Bootstrapper
     {
-        private static IContainer Container;
+        private static IContainer _container;
 
         public static void Init()
         {
@@ -30,13 +32,16 @@ namespace Bootstrapper
         }
 
         /// <summary>
-        /// Resolves the type from the type parameter repository input
+        /// Locates the type from the type parameter input
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>An instance of type T</returns>
-        public static T Resolve<T>()
+        public static T Locate<T>()
         {
-            return Container.Resolve<T>();
+            using (_container.BeginLifetimeScope())
+            {
+                return _container.Resolve<T>();
+            }
         }
 
         /// <summary>
@@ -51,14 +56,19 @@ namespace Bootstrapper
 
             // Models
             builder.RegisterType<Person>().As<IPerson>();
+            
+            // Factories
+            // Register as instances so that each one is re-used
+            builder.RegisterInstance(new PersonFactory()).As<IPersonFactory>();
 
             // Repositories
-            builder.RegisterType<PersonRepository>().As<IPersonRepository>();
+            // Register as instances so that each one is re-used
+            builder.RegisterInstance(new PersonRepository()).As<IPersonRepository>();
 
             // Services
             builder.RegisterType<PersonService>().As<IPersonService>();
 
-            Container = builder.Build();
+            _container = builder.Build();
         }
     }
 }

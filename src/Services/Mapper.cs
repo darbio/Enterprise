@@ -13,7 +13,7 @@ namespace Services
     {
         static Mapper()
         {
-            AutoMapper.Mapper.CreateMap<IPerson, IPersonEntity>();
+            AutoMapper.Mapper.CreateMap<IPerson, IPersonEntity>().ReverseMap();
         }
 
         public static T1 Map<T1>(object input)

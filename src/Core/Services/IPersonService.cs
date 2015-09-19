@@ -10,7 +10,7 @@ namespace Core.Services
 
     public interface IPersonService
     {
-        void Save(IPerson person);
+        IPerson Save(IPerson person);
 
         IEnumerable<IPerson> GetList();
     }

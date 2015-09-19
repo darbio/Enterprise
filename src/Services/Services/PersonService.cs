@@ -13,28 +13,36 @@ namespace Services.Services
 
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository personRepository;
+        private readonly IPersonRepository _personRepository;
 
         public PersonService(IPersonRepository personRepository)
         {
-            this.personRepository = personRepository;
+            this._personRepository = personRepository;
         }
 
-        public void Save(IPerson person)
+        public IPerson Save(IPerson person)
         {
             // Map IPerson to IPersonEntity
             // Send to our repository
-            var entity = personRepository.Save(Mapper.Map<IPersonEntity>(person));
+            var entity = _personRepository.Save(Mapper.Map<IPersonEntity>(person));
+
+            // Map IPersonEntity to IPerson
+            person = Mapper.Map<IPerson>(entity);
+
+            // Return
+            return person;
         }
 
         public IEnumerable<IPerson> GetList()
         {
             // Get our Persons from the repository
+            var entities = _personRepository.GetList();
 
             // Map IPersonEntity to IPerson
+            var persons = Mapper.Map<IEnumerable<IPerson>>(entities);
 
             // Return
-            return new List<IPerson>();
+            return persons;
         }
     }
 }

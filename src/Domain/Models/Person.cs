@@ -15,5 +15,7 @@ namespace Domain.Models
         public string LastName { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        internal Person() { }
     }
 }
