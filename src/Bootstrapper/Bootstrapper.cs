@@ -35,7 +35,7 @@ namespace Bootstrapper
         /// <summary>
         /// Locates the type from the type parameter input
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">An ILocatable type</typeparam>
         /// <returns>An instance of type T</returns>
         public static T Locate<T>() where T : ILocatable
         {
