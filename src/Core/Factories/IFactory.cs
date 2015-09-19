@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Models;
 
 namespace Core.Factories
 {
-    public interface IPersonFactory : IFactory
+    public interface IFactory : ILocatable
     {
-        IPerson FactoryMethod();
-
-        IPerson FactoryMethod(Action<IPerson> initializer);
     }
 }

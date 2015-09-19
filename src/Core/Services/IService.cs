@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    using Core.Models;
-
-    public interface IPersonService : IService
+    public interface IService :ILocatable
     {
-        IPerson Save(IPerson person);
-
-        IEnumerable<IPerson> GetList();
     }
 }

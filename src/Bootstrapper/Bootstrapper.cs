@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 using Core.Factories;
 using Domain.Factories;
 
@@ -36,7 +37,7 @@ namespace Bootstrapper
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>An instance of type T</returns>
-        public static T Locate<T>()
+        public static T Locate<T>() where T : ILocatable
         {
             using (_container.BeginLifetimeScope())
             {
