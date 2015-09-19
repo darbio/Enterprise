@@ -6,5 +6,6 @@
 
     public interface IPersonRepository : IRepository<IPersonEntity>
     {
+        IEnumerable<IPersonEntity> GetByLastName(string lastname);
     }
 }

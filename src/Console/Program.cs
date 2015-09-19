@@ -30,6 +30,16 @@ namespace Console
 
             // Save our person
             person = personService.Save(person);
+
+            // Retrieve our person
+            var peopleCalledDarbyshire = personService.GetByLastName(person.LastName);
+
+            foreach (var darbyshire in peopleCalledDarbyshire)
+            {
+                System.Console.WriteLine("{0} {1}", darbyshire.FirstName, darbyshire.LastName);
+            }
+
+            System.Console.ReadKey();
         }
     }
 }

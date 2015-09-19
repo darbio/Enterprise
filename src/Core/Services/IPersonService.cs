@@ -13,5 +13,7 @@ namespace Core.Services
         IPerson Save(IPerson person);
 
         IEnumerable<IPerson> GetList();
+
+        IEnumerable<IPerson> GetByLastName(string lastname);
     }
 }

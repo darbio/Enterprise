@@ -44,5 +44,17 @@ namespace Services.Services
             // Return
             return persons;
         }
+
+        public IEnumerable<IPerson> GetByLastName(string lastname)
+        {
+            // Get our persons from the repository
+            var entities = _personRepository.GetByLastName(lastname);
+
+            // Map IPersonEntity to IPerson
+            var persons = Mapper.Map<IEnumerable<IPerson>>(entities);
+
+            // Return
+            return persons;
+        }
     }
 }
